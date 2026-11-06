@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>반짝반짝 작은 별</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0b1026;
+      color: #fff6c9;
+      font-family: "Malgun Gothic", sans-serif;
+      text-align: center;
+    }
+    h1 {
+      margin: 16px;
+      font-size: clamp(2rem, 8vw, 4rem);
+    }
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 24px 0;
+    }
+    .tree {
+      display: block;
+      width: min(240px, 60vw);
+      margin: 0 auto;
+    }
+    .tree-star, .light {
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    .light {
+      animation: twinkle 1.6s ease-in-out infinite;
+    }
+    .light:nth-of-type(even) {
+      animation-delay: 0.8s;
+    }
+    .snow {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .flake {
+      position: absolute;
+      top: -10px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to { transform: translateY(calc(100vh + 20px)); }
+    }
+    .greeting {
+      margin: 16px;
+      color: #ff8a8a;
+      font-size: clamp(1.3rem, 5vw, 2rem);
+      font-weight: bold;
+    }
+    .lyrics {
+      margin: 16px;
+      font-size: clamp(1.1rem, 4vw, 1.5rem);
+      line-height: 1.9;
+    }
+    .star {
+      display: inline-block;
+      animation: twinkle 1.2s ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      50% { opacity: 0.25; transform: scale(0.8); }
+    }
+  </style>
+</head>
+<body>
+  <div class="snow" aria-hidden="true"></div>
+  <main>
+    <svg class="tree" viewBox="0 0 200 230" role="img" aria-label="꼭대기에 별이 달린 크리스마스 트리">
+      <rect x="86" y="195" width="28" height="30" rx="3" fill="#6b4226"/>
+      <polygon points="100,110 180,195 20,195" fill="#14713f"/>
+      <polygon points="100,70 160,140 40,140" fill="#1a8a4d"/>
+      <polygon points="100,40 140,95 60,95" fill="#22a35c"/>
+      <circle class="light" cx="88" cy="82" r="5" fill="#ff5a5f"/>
+      <circle class="light" cx="115" cy="86" r="5" fill="#ffd166"/>
+      <circle class="light" cx="100" cy="112" r="5" fill="#6ec6ff"/>
+      <circle class="light" cx="72" cy="126" r="5" fill="#ffd166"/>
+      <circle class="light" cx="130" cy="122" r="5" fill="#ff5a5f"/>
+      <circle class="light" cx="82" cy="154" r="5" fill="#6ec6ff"/>
+      <circle class="light" cx="122" cy="158" r="5" fill="#ffd166"/>
+      <circle class="light" cx="58" cy="180" r="5" fill="#ff5a5f"/>
+      <circle class="light" cx="100" cy="178" r="5" fill="#ff5a5f"/>
+      <circle class="light" cx="142" cy="180" r="5" fill="#6ec6ff"/>
+      <polygon class="star tree-star" fill="#ffd700" points="100,8 104.7,21.5 119,21.8 107.6,30.5 111.8,44.2 100,36 88.2,44.2 92.4,30.5 81,21.8 95.3,21.5"/>
+    </svg>
+    <h1><span class="star" aria-hidden="true">⭐</span> 반짝반짝 작은 별 <span class="star" aria-hidden="true">⭐</span></h1>
+    <p class="lyrics">
+      반짝반짝 작은 별<br>
+      아름답게 비치네<br>
+      동쪽 하늘에서도<br>
+      서쪽 하늘에서도<br>
+      반짝반짝 작은 별<br>
+      아름답게 비치네
+    </p>
+    <p class="greeting">Merry Christmas!</p>
+  </main>
+  <script>
+    const snow = document.querySelector('.snow');
+    for (let i = 0; i < 50; i++) {
+      const flake = document.createElement('span');
+      const size = 2 + Math.random() * 5;
+      const duration = 6 + Math.random() * 8;
+      flake.className = 'flake';
+      flake.style.left = Math.random() * 100 + '%';
+      flake.style.width = flake.style.height = size + 'px';
+      flake.style.animationDuration = duration + 's';
+      flake.style.animationDelay = -Math.random() * duration + 's';
+      snow.appendChild(flake);
+    }
+  </script>
+</body>
+</html>
