@@ -271,10 +271,7 @@ function App() {
 
   return (
     <>
-    <div className="page">
-      <p className="page-title">품질경영실 AI 비서</p>
-      <p>오른쪽 아래 아이콘을 눌러 대화를 시작하세요.</p>
-    </div>
+    <CapstoneDashboard />
 
     <section
       className={`chat${open ? ' open' : ''}`}
